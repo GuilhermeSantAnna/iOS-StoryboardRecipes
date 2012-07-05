@@ -14,20 +14,20 @@
 
 @synthesize recipe, titleField, directionsText, prepTimeLabel, recipeImage, prepTimeStepper, formatter, recipeListVC;
 
+#pragma mark - Action Methods
+
 - (IBAction)changePreparationTime:(UIStepper *)sender {
   NSInteger value = (NSInteger) [sender value];
   self.recipe.preparationTime = [NSNumber numberWithInteger:value];
   self.prepTimeLabel.text = [self.formatter stringFromNumber:self.recipe.preparationTime];
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+- (IBAction)done:(UIBarButtonItem *)sender {
+  [self dismissModalViewControllerAnimated:YES];
+  [self.recipeListVC finishedEditingRecipe:self.recipe];
 }
+
+#pragma mark - View Lifecycle
 
 - (void)viewDidLoad
 {
@@ -47,11 +47,6 @@
   self.recipe = nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
   self.titleField.text = self.recipe.title;
@@ -63,9 +58,18 @@
   }
 }
 
-- (IBAction)done:(UIBarButtonItem *)sender {
-    [self dismissModalViewControllerAnimated:YES];
-    [self.recipeListVC finishedEditingRecipe:self.recipe];
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+  if([@"editDirections" isEqualToString:segue.identifier]) {
+    [[segue destinationViewController] setRecipe:recipe];
+  }
+  if ([@"choosePhoto" isEqualToString:segue.identifier]) {
+    [[segue destinationViewController] setDelegate:self];
+  }
 }
 
 #pragma mark - Text Field Delegate Methods
@@ -79,14 +83,6 @@
   self.recipe.title = textField.text;
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-  if([@"editDirections" isEqualToString:segue.identifier]) {
-    [[segue destinationViewController] setRecipe:recipe];
-  }
-  if ([@"choosePhoto" isEqualToString:segue.identifier]) {
-    [[segue destinationViewController] setDelegate:self];
-  }
-}
 
 #pragma mark - Image Picker Delegate Methods
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {

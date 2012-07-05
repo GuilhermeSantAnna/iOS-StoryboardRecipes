@@ -62,7 +62,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="t1I-mN-hdc" kind="modal" identifier="editExistingRecipe" id="xNc-67-PLQ"/>
+                        <segue destination="t1I-mN-hdc" kind="modal" identifier="editExistingRecipe" id="PC2-AE-d7h"/>
                     </connections>
                 </viewController>
             </objects>
@@ -327,6 +327,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="xNc-67-PLQ"/>
+        <segue reference="PC2-AE-d7h"/>
     </inferredMetricsTieBreakers>
 </document>

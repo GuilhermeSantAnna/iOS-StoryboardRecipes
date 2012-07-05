@@ -44,8 +44,8 @@
 #pragma mark - Table view delegate messages
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    [self performSegueWithIdentifier:@"editExistingRecipe" sender:cell];
+  UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+  [self performSegueWithIdentifier:@"editExistingRecipe" sender:cell];
 }
 
 #pragma mark - Table view data source
@@ -67,6 +67,7 @@
   cell.imageView.image = [[self.dataSource recipeAtIndex:indexPath.row] image];
   NSNumber *prepTime = [[self.dataSource recipeAtIndex:indexPath.row] preparationTime];
   cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %@", prepTime, NSLocalizedString(@"minutes", nil)];
+
   return cell;
 }
 
