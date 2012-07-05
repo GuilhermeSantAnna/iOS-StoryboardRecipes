@@ -16,12 +16,13 @@
 @property(nonatomic, strong) PRPRecipe *recipe;
 @property(nonatomic, strong) NSNumberFormatter *formatter;
 
+@property(nonatomic, weak) PRPRecipesListViewController *recipeListVC;
+
 @property(nonatomic, strong) IBOutlet UITextField *titleField;
+@property(nonatomic, strong) IBOutlet UITextView *directionsText;
 @property(nonatomic, strong) IBOutlet UILabel *prepTimeLabel;
 @property(nonatomic, strong) IBOutlet UIImageView *recipeImage;
 @property(nonatomic, strong) IBOutlet UIStepper *prepTimeStepper;
-@property(nonatomic, strong) IBOutlet UITextView *directionsText;
-@property(nonatomic, weak) PRPRecipesListViewController *recipeListVC;
 
 - (IBAction)changePreparationTime:(UIStepper *)sender;
 - (IBAction)done:(UIBarButtonItem *)sender;

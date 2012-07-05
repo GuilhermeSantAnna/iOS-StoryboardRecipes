@@ -7,6 +7,7 @@
 //
 
 #import "PRPViewController.h"
+#import "PRPRecipe.h"
 
 @implementation PRPViewController
 

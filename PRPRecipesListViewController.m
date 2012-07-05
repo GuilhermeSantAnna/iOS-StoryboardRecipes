@@ -9,96 +9,76 @@
 #import "PRPRecipesListViewController.h"
 #import "PRPRecipe.h"
 #import "PRPViewController.h"
-#import "PRPRecipeSource.h"
 #import "PRPRecipeEditorViewController.h"
-
-@interface PRPRecipesListViewController ()
-
-@end
 
 @implementation PRPRecipesListViewController
 
-@synthesize dataSource;
+@synthesize dataSource = _dataSource;
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+#pragma mark - View Lifecycle
+
+
+- (void)viewDidLoad{
+  [super viewDidLoad];
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+  return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+#pragma mark - public methods
+
+- (void)finishedEditingRecipe:(PRPRecipe *)recipe {
+  NSUInteger row = [self.dataSource indexOfRecipe:recipe];
+  NSIndexPath *path = [NSIndexPath indexPathForRow:row inSection:0];
+  UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:path];
+  if(nil == cell) {
+    [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:path] withRowAnimation:UITableViewRowAnimationLeft];
+  } else {
+    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:path] withRowAnimation:UITableViewRowAnimationFade];
+  }
+}
+
+#pragma mark - Table view delegate messages
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    [self performSegueWithIdentifier:@"editExistingRecipe" sender:cell];
 }
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+  return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
   return [self.dataSource recipeCount];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
   static NSString *CellIdentifier = @"Cell";
+  
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-  if (cell == nil) {
-    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-  }
-  PRPRecipe *recipe = [self.dataSource recipeAtIndex:indexPath.row];
-  cell.textLabel.text = [recipe title];
-  cell.imageView.image = [recipe image];
-  cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %@",
-                               [recipe preparationTime],
-                               NSLocalizedString(@"minutes", nil)];
+  cell.textLabel.text = [[self.dataSource recipeAtIndex:indexPath.row] title];
+  cell.imageView.image = [[self.dataSource recipeAtIndex:indexPath.row] image];
+  NSNumber *prepTime = [[self.dataSource recipeAtIndex:indexPath.row] preparationTime];
+  cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %@", prepTime, NSLocalizedString(@"minutes", nil)];
   return cell;
 }
 
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-      [self.dataSource deleteRecipeAtIndex:indexPath.row];
-      [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-    }   
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+  if (editingStyle == UITableViewCellEditingStyleDelete) {
+    [self.dataSource deleteRecipeAtIndex:indexPath.row];
+    [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+  } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+  }   
 }
 
-- (void)finishedEditingRecipe:(PRPRecipe *)recipe {
-    NSUInteger row = [self.dataSource indexOfRecipe:recipe];
-    NSIndexPath *path = [NSIndexPath indexPathForRow:row inSection:0];
-    [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:path] withRowAnimation:UITableViewRowAnimationLeft];
-}
-
-#pragma mark - Table view delegate
+#pragma mark - Segue methods
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([@"presentRecipeDetail" isEqualToString:segue.identifier]) {
@@ -110,6 +90,14 @@
         PRPRecipe *recipe = [self.dataSource createNewRecipe];
         UIViewController *topVC = [[segue destinationViewController] topViewController];
         PRPRecipeEditorViewController *editor = (PRPRecipeEditorViewController *)topVC;
+        editor.recipeListVC = self;
+        editor.recipe = recipe;
+    }
+    if([@"editExistingRecipe" isEqualToString:segue.identifier]) {
+        NSIndexPath *index = [self.tableView indexPathForCell:sender];
+        PRPRecipe *recipe = [self.dataSource recipeAtIndex:index.row];
+        UINavigationController *nav = [segue destinationViewController];
+        PRPRecipeEditorViewController *editor = (PRPRecipeEditorViewController *)[nav topViewController];
         editor.recipeListVC = self;
         editor.recipe = recipe;
     }

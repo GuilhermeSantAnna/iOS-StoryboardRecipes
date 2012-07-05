@@ -11,16 +11,16 @@
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
                 <viewController id="2" customClass="PRPRecipesListViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Te8-if-07B">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Te8-if-07B">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="Kk7-EX-KYM" detailTextLabel="4hT-MN-q1E" imageView="FL9-wZ-NJs" style="IBUITableViewCellStyleSubtitle" id="mgu-hD-Jgt">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="detailDisclosureButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="Kk7-EX-KYM" detailTextLabel="4hT-MN-q1E" imageView="FL9-wZ-NJs" style="IBUITableViewCellStyleSubtitle" id="mgu-hD-Jgt">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Kk7-EX-KYM">
@@ -37,7 +37,7 @@
                                             <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </label>
-                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="fire-damage-london.png" id="FL9-wZ-NJs">
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="IMG_1948.jpg" id="FL9-wZ-NJs">
                                             <rect key="frame" x="0.0" y="0.0" width="43" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </imageView>
@@ -61,6 +61,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="t1I-mN-hdc" kind="modal" identifier="editExistingRecipe" id="xNc-67-PLQ"/>
+                    </connections>
                 </viewController>
             </objects>
             <point key="canvasLocation" x="691" y="77"/>
@@ -236,6 +239,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="XpN-f8-FCt"/>
                     <connections>
                         <outlet property="directionsView" destination="Xuk-pi-FkR" id="rbo-eH-lCg"/>
                         <outlet property="imageView" destination="KFK-AT-wWk" id="sBE-4K-94v"/>
@@ -279,12 +283,12 @@
                     </connections>
                 </navigationController>
             </objects>
-            <point key="canvasLocation" x="1236" y="-244"/>
+            <point key="canvasLocation" x="1236" y="-236"/>
         </scene>
     </scenes>
     <resources>
+        <image name="IMG_1948.jpg" width="280" height="280"/>
         <image name="TapToChoose.png" width="280" height="280"/>
-        <image name="fire-damage-london.png" width="280" height="280"/>
     </resources>
     <classes>
         <class className="PRPDirectionsEditorViewController" superclassName="UIViewController">
@@ -322,4 +326,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="xNc-67-PLQ"/>
+    </inferredMetricsTieBreakers>
 </document>

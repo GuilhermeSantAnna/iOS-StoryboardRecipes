@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PRPRecipe.h"
+
 @class PRPRecipe;
 
 @interface PRPViewController : UIViewController

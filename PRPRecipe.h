@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface PRPRecipe : NSObject
+@interface PRPRecipe : NSObject <NSCoding>
 
 @property(nonatomic, copy) NSString *title;
 @property(nonatomic, copy) NSString *directions;
+@property(nonatomic, copy) NSNumber *preparationTime;
 @property(nonatomic, strong) UIImage *image;
-@property(nonatomic, strong) NSNumber *preparationTime;
 
 @end
