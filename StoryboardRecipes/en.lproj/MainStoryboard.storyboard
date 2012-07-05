@@ -127,7 +127,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Edit Recipe" id="jrx-pB-Dey">
-                        <barButtonItem key="rightBarButtonItem" title="Done" id="2sY-eY-u9S"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="2sY-eY-u9S">
+                            <connections>
+                                <action selector="done:" destination="p5p-An-BsN" id="NSc-Qo-iJb"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="directionsText" destination="3SH-Uu-Tbu" id="wKw-ch-G7y"/>
@@ -187,7 +191,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LMZ-Ub-b1J" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="sYe-7c-b32" customClass="UIImagePickerController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VWF-ub-QT2">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -293,6 +297,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PRPRecipeEditorViewController.h"/>
             <relationships>
                 <relationship kind="action" name="changePreparationTime:" candidateClass="UIStepper"/>
+                <relationship kind="action" name="done:" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="directionsText" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="prepTimeLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="prepTimeStepper" candidateClass="UIStepper"/>

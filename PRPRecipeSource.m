@@ -31,6 +31,10 @@
   return recipe;
 }
 
+- (NSUInteger)indexOfRecipe:(PRPRecipe *)recipe {
+    return [self.recipes indexOfObject:recipe];
+}
+
 -(NSArray *)recipes {
   if(nil == recipes) {
     NSMutableArray *localRecipes = [NSMutableArray array];

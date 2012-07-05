@@ -8,10 +8,11 @@
 
 #import "PRPRecipeEditorViewController.h"
 #import "PRPRecipe.h"
+#import "PRPRecipesListViewController.h"
 
 @implementation PRPRecipeEditorViewController
 
-@synthesize recipe, titleField, directionsText, prepTimeLabel, recipeImage, prepTimeStepper, formatter;
+@synthesize recipe, titleField, directionsText, prepTimeLabel, recipeImage, prepTimeStepper, formatter, recipeListVC;
 
 - (IBAction)changePreparationTime:(UIStepper *)sender {
   NSInteger value = (NSInteger) [sender value];
@@ -60,6 +61,11 @@
   if (nil != self.recipe.image) {
     self.recipeImage.image = self.recipe.image;
   }
+}
+
+- (IBAction)done:(UIBarButtonItem *)sender {
+    [self dismissModalViewControllerAnimated:YES];
+    [self.recipeListVC finishedEditingRecipe:self.recipe];
 }
 
 #pragma mark - Text Field Delegate Methods

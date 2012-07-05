@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PRPRecipesListViewController.h"
 
 @class PRPRecipe;
 
@@ -19,8 +20,10 @@
 @property(nonatomic, strong) IBOutlet UILabel *prepTimeLabel;
 @property(nonatomic, strong) IBOutlet UIImageView *recipeImage;
 @property(nonatomic, strong) IBOutlet UIStepper *prepTimeStepper;
-@property (strong, nonatomic) IBOutlet UITextView *directionsText;
+@property(nonatomic, strong) IBOutlet UITextView *directionsText;
+@property(nonatomic, weak) PRPRecipesListViewController *recipeListVC;
 
 - (IBAction)changePreparationTime:(UIStepper *)sender;
+- (IBAction)done:(UIBarButtonItem *)sender;
 
 @end
