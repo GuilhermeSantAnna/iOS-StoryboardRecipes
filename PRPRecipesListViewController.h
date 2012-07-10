@@ -8,11 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "PRPRecipesListDataSource.h"
+#import "PRPRecipeEditorDelegate.h"
 
-@interface PRPRecipesListViewController : UITableViewController
+@interface PRPRecipesListViewController : UITableViewController <PRPRecipeEditorDelegate>
 
 @property (nonatomic, strong) id <PRPRecipesListDataSource> dataSource;
-
-- (void)finishedEditingRecipe:(PRPRecipe *)recipe;
 
 @end

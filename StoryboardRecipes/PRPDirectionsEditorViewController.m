@@ -11,13 +11,13 @@
 
 @implementation PRPDirectionsEditorViewController
 
-@synthesize recipe, textView;
+@synthesize delegate, text, textView;
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
   self.title = @"Edit Directions";
   [self.textView becomeFirstResponder];
-  self.textView.text = self.recipe.directions;
+  self.textView.text = self.text;
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
@@ -28,7 +28,7 @@
 - (void)viewDidUnload
 {
   [super viewDidUnload];
-  self.recipe = nil;
+  self.text = nil;
   self.textView = nil;
 }
 
@@ -40,7 +40,7 @@
 #pragma mark - Text View Delegate Methods
 
 - (void)textViewDidEndEditing:(UITextView *)textView {
-  self.recipe.directions = self.textView.text;
+  [self.delegate directionsEditor:self finishedEditingText:self.textView.text] ;
 }
 
 @end

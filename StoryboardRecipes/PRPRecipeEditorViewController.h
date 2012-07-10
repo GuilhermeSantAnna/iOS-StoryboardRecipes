@@ -8,15 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "PRPRecipesListViewController.h"
+#import "PRPRecipeEditorDelegate.h"
+#import "PRPDirectionsEditorDelegate.h"
 
 @class PRPRecipe;
 
-@interface PRPRecipeEditorViewController : UIViewController <UITextFieldDelegate, UIImagePickerControllerDelegate>
+@interface PRPRecipeEditorViewController : UIViewController <UITextFieldDelegate, UIImagePickerControllerDelegate, PRPDirectionsEditorDelegate>
 
 @property(nonatomic, strong) PRPRecipe *recipe;
 @property(nonatomic, strong) NSNumberFormatter *formatter;
 
-@property(nonatomic, weak) PRPRecipesListViewController *recipeListVC;
+@property(nonatomic, weak) id<PRPRecipeEditorDelegate> delegate;
 
 @property(nonatomic, strong) IBOutlet UITextField *titleField;
 @property(nonatomic, strong) IBOutlet UITextView *directionsText;

@@ -10,6 +10,7 @@
 #import "PRPRecipe.h"
 #import "PRPViewController.h"
 #import "PRPRecipeEditorViewController.h"
+#import "PRPRecipeEditorDelegate.h"
 
 @implementation PRPRecipesListViewController
 
@@ -37,6 +38,17 @@
   if(nil == cell) {
     [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:path] withRowAnimation:UITableViewRowAnimationLeft];
   } else {
+    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:path] withRowAnimation:UITableViewRowAnimationFade];
+  }
+  [self.dataSource recipesChanged];
+}
+
+- (void)recipeChanged:(PRPRecipe *)recipe {
+  [self.dataSource recipesChanged];
+  NSUInteger row = [self.dataSource indexOfRecipe:recipe];
+  NSIndexPath *path = [NSIndexPath indexPathForRow:row inSection:0];
+  UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:path];
+  if (nil != cell) {
     [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:path] withRowAnimation:UITableViewRowAnimationFade];
   }
 }
@@ -91,7 +103,7 @@
         PRPRecipe *recipe = [self.dataSource createNewRecipe];
         UIViewController *topVC = [[segue destinationViewController] topViewController];
         PRPRecipeEditorViewController *editor = (PRPRecipeEditorViewController *)topVC;
-        editor.recipeListVC = self;
+        editor.delegate = self;
         editor.recipe = recipe;
     }
     if([@"editExistingRecipe" isEqualToString:segue.identifier]) {
@@ -99,7 +111,7 @@
         PRPRecipe *recipe = [self.dataSource recipeAtIndex:index.row];
         UINavigationController *nav = [segue destinationViewController];
         PRPRecipeEditorViewController *editor = (PRPRecipeEditorViewController *)[nav topViewController];
-        editor.recipeListVC = self;
+        editor.delegate = self;
         editor.recipe = recipe;
     }
 }

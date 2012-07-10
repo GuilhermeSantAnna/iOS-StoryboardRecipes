@@ -12,7 +12,7 @@
 
 @implementation PRPRecipeEditorViewController
 
-@synthesize recipe, titleField, directionsText, prepTimeLabel, recipeImage, prepTimeStepper, formatter, recipeListVC;
+@synthesize recipe, titleField, directionsText, prepTimeLabel, recipeImage, prepTimeStepper, formatter, delegate;
 
 #pragma mark - Action Methods
 
@@ -20,11 +20,12 @@
   NSInteger value = (NSInteger) [sender value];
   self.recipe.preparationTime = [NSNumber numberWithInteger:value];
   self.prepTimeLabel.text = [self.formatter stringFromNumber:self.recipe.preparationTime];
+  [self.delegate recipeChanged:self.recipe];
 }
 
 - (IBAction)done:(UIBarButtonItem *)sender {
   [self dismissModalViewControllerAnimated:YES];
-  [self.recipeListVC finishedEditingRecipe:self.recipe];
+  [self.delegate finishedEditingRecipe:self.recipe];
 }
 
 #pragma mark - View Lifecycle
@@ -65,7 +66,8 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
   if([@"editDirections" isEqualToString:segue.identifier]) {
-    [[segue destinationViewController] setRecipe:recipe];
+    [[segue destinationViewController] setText:self.recipe.directions];
+    [[segue destinationViewController] setDelegate:self];
   }
   if ([@"choosePhoto" isEqualToString:segue.identifier]) {
     [[segue destinationViewController] setDelegate:self];
@@ -81,6 +83,7 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
   self.recipe.title = textField.text;
+  [self.delegate recipeChanged:self.recipe];
 }
 
 
@@ -88,10 +91,18 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
   self.recipe.image = [info valueForKey:UIImagePickerControllerOriginalImage];
   [picker dismissModalViewControllerAnimated:YES];
+  [self.delegate recipeChanged:self.recipe];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
   [picker dismissModalViewControllerAnimated:YES];
+}
+
+#pragma mark - Directions Editor Delegate Methods
+
+- (void)directionsEditor:(PRPDirectionsEditorViewController *)editor finishedEditingText:(NSString *)text {
+  self.recipe.directions = text;
+  [self.delegate recipeChanged:self.recipe];
 }
 
 @end
