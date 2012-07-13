@@ -29,6 +29,20 @@
   return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recipesChanged:) name:PRPRecipesDidChangeNotification object:self.dataSource];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+  [super viewWillDisappear:animated];
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:PRPRecipesDidChangeNotification object:self.dataSource];
+}
+
+- (void)recipesChanged:(PRPRecipe *)recipe {
+  [self.tableView reloadData];
+}
+
 #pragma mark - public methods
 
 - (void)finishedEditingRecipe:(PRPRecipe *)recipe {
@@ -89,6 +103,28 @@
     [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
   } else if (editingStyle == UITableViewCellEditingStyleInsert) {
   }   
+}
+
+#pragma mark - Mail methods
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
+  [controller dismissModalViewControllerAnimated:YES];
+}
+
+- (IBAction)sendEmail:(id)sender {
+  MFMailComposeViewController *mailVC = [[MFMailComposeViewController alloc] init];
+  mailVC.delegate = self;
+  [mailVC setSubject:@"Great Recipes"];
+  NSError *error = nil;
+  [mailVC addAttachmentData:[self.dataSource dataForRecipes:&error]
+                   mimeType:@"application/octet-stream"
+                   fileName:@"Recipes.recipes"];
+  if (nil == error) {
+    mailVC.mailComposeDelegate = self;
+    [self presentModalViewController:mailVC animated:YES];
+  } else {
+    NSLog(@"error in coordinating read %@ - %@", error, error.userInfo);
+  }
 }
 
 #pragma mark - Segue methods

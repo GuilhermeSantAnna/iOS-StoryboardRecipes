@@ -20,6 +20,7 @@
 		9CFADBA815A1DB360053471C /* PRPDirectionsEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CFADBA715A1DB360053471C /* PRPDirectionsEditorViewController.m */; };
 		9CFADBBC15A324E40053471C /* TapToChoose.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CFADBBB15A324E40053471C /* TapToChoose.png */; };
 		A73F2F0F15A71B9A00086B2B /* PRPRecipesDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = A73F2F0E15A71B9A00086B2B /* PRPRecipesDocument.m */; };
+		A7B001BA15AF0BA800A401EB /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7B001B915AF0BA800A401EB /* MessageUI.framework */; };
 		A7B213BC15A5E28D000DE18C /* IMG_1948.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A7B213BB15A5E28D000DE18C /* IMG_1948.jpg */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +52,7 @@
 		A73F2F0E15A71B9A00086B2B /* PRPRecipesDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRPRecipesDocument.m; sourceTree = "<group>"; wrapsLines = 1; };
 		A73F2F1115A74E4E00086B2B /* PRPRecipeEditorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRPRecipeEditorDelegate.h; sourceTree = "<group>"; };
 		A73F2F1615A75BB400086B2B /* PRPDirectionsEditorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRPDirectionsEditorDelegate.h; sourceTree = "<group>"; };
+		A7B001B915AF0BA800A401EB /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		A7B213BB15A5E28D000DE18C /* IMG_1948.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_1948.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -59,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7B001BA15AF0BA800A401EB /* MessageUI.framework in Frameworks */,
 				9C9B6163159C9A73000F5561 /* UIKit.framework in Frameworks */,
 				9C9B6165159C9A73000F5561 /* Foundation.framework in Frameworks */,
 			);
@@ -70,6 +73,7 @@
 		9C9B6153159C9A73000F5561 = {
 			isa = PBXGroup;
 			children = (
+				A7B001B915AF0BA800A401EB /* MessageUI.framework */,
 				9C9B6168159C9A73000F5561 /* StoryboardRecipes */,
 				9C9B6161159C9A73000F5561 /* Frameworks */,
 				9C9B615F159C9A73000F5561 /* Products */,

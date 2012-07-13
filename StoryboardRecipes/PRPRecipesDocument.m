@@ -9,6 +9,8 @@
 #import "PRPRecipesDocument.h"
 #import "PRPRecipe.h"
 
+NSString * const PRPRecipesDidChangeNotification = @"PRPRecipesDidChangeNotification";
+
 @implementation PRPRecipesDocument
 
 @synthesize recipes;
@@ -49,6 +51,13 @@
   }
 }
 
+#pragma mark - Sharing Method
+- (void)addRecipesFromDocument:(PRPRecipesDocument *)newDoc {
+  [self.recipes addObjectsFromArray:[newDoc recipes]];
+  [[NSNotificationCenter defaultCenter] postNotificationName:PRPRecipesDidChangeNotification object:self];
+  [self updateChangeCount:UIDocumentChangeDone];
+}
+
 #pragma mark - Recipe List Methods
 
 - (NSInteger)recipeCount {
@@ -78,6 +87,18 @@
 - (void)recipesChanged {
   NSLog(@"I'm at recipeschanged method");
   [self updateChangeCount:UIDocumentChangeDone];
+}
+
+- (NSData *)dataForRecipes:(NSError **)error {
+  __block NSData *data = nil;
+  NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:nil];
+  [coordinator coordinateReadingItemAtURL:[self fileURL]
+                                  options:NSFileCoordinatorReadingWithoutChanges
+                                    error:error
+                               byAccessor:^(NSURL *newURL) {
+                                 data = [NSData dataWithContentsOfURL:newURL];
+                               }];
+  return data;
 }
 
 @end

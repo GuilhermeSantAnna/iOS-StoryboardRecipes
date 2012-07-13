@@ -10,15 +10,20 @@
 #import "PRPRecipesListViewController.h"
 #import "PRPRecipesDocument.h"
 
+@interface PRPAppDelegate()
+
+@property(nonatomic, strong) PRPRecipesDocument *document;
+
+@end
+
 @implementation PRPAppDelegate
 
 @synthesize window = _window;
+@synthesize document = _document;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  UINavigationController *navigationController = 
-  (UINavigationController *)self.window.rootViewController;
-  PRPRecipesListViewController *controller = 
-  (PRPRecipesListViewController *)navigationController.topViewController;
+  UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
+  PRPRecipesListViewController *controller = (PRPRecipesListViewController *)navigationController.topViewController;
   NSURL *docDir = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
   NSURL *docURL = [docDir URLByAppendingPathComponent:@"Recipes.recipes"];
   PRPRecipesDocument *doc = [[PRPRecipesDocument alloc] initWithFileURL:docURL];
@@ -30,9 +35,21 @@
       NSLog(@"Failed to open document");
     }
   }];
+  self.document = doc;
   return YES;
 }
-//
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+  PRPRecipesDocument *newDoc = [[PRPRecipesDocument alloc] initWithFileURL:url];
+  [newDoc openWithCompletionHandler:^(BOOL success) {
+    if (success) {
+      [self.document addRecipesFromDocument:newDoc];
+    } else {
+      NSLog(@"Failed to open new document - %@", url);
+    }
+  }];
+  return YES;
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {

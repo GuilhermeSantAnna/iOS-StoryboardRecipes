@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString * const PRPRecipesDidChangeNotification;
+
 @class PRPRecipe;
 
 @protocol PRPRecipesListDataSource <NSObject>
@@ -18,5 +20,6 @@
 - (void)deleteRecipeAtIndex:(NSInteger)index;
 - (PRPRecipe *)createNewRecipe;
 - (void)recipesChanged;
+- (NSData *)dataForRecipes:(NSError **)error;
 
 @end

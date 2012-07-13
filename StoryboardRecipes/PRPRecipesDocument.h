@@ -12,5 +12,6 @@
 @interface PRPRecipesDocument : UIDocument <PRPRecipesListDataSource>
 
 @property(nonatomic, strong) NSMutableArray *recipes;
+- (void)addRecipesFromDocument:(PRPRecipesDocument *)newDoc;
 
 @end

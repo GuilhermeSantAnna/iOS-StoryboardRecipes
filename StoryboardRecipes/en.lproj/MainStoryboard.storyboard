@@ -55,6 +55,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Recipes" id="KQC-WZ-6UM">
+                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="CeM-A2-N1f">
+                            <connections>
+                                <action selector="sendEmail:" destination="2" id="ZdX-LC-mm9"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="A4m-NS-V8h">
                             <connections>
                                 <segue destination="t1I-mN-hdc" kind="modal" identifier="addNewRecipe" id="sbM-4Y-6Te"/>
@@ -311,6 +316,9 @@
         </class>
         <class className="PRPRecipesListViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PRPRecipesListViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="sendEmail:"/>
+            </relationships>
         </class>
         <class className="PRPViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PRPViewController.h"/>
