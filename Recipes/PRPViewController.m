@@ -8,6 +8,7 @@
 ***/
 #import "PRPViewController.h"
 #import "PRPRecipe.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation PRPViewController
 
@@ -34,6 +35,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
+  
   self.title = self.recipe.title;
   self.directionsView.text = self.recipe.directions;
   if(nil != self.recipe.image) {
@@ -44,6 +46,15 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
   return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+}
+
+- (IBAction)rotateImageView:(UIRotationGestureRecognizer *)tapGR {
+  [UIView animateWithDuration:0.5 
+                   animations:^{ 
+                     self.imageView.transform = CGAffineTransformRotate(self.imageView.transform, M_PI / 2.0);
+                   }
+                   completion:^(BOOL finishide) {
+                   }];
 }
 
 @end

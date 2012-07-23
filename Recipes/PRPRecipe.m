@@ -8,12 +8,10 @@
 ***/
 #import "PRPRecipe.h"
 
+
 @implementation PRPRecipe
 
-@synthesize title;
-@synthesize directions;
-@synthesize preparationTime;
-@synthesize image;
+@synthesize title, directions, preparationTime, image, thumbnailImage;
 
 - (id)init {
     self = [super init];
@@ -30,6 +28,7 @@
     directions = [coder decodeObjectForKey:@"directions"];
     preparationTime = [coder decodeObjectForKey:@"preparationTime"];
     image = [coder decodeObjectForKey:@"image"];
+    thumbnailImage = [coder decodeObjectForKey:@"thumbnailImage"];
   }
   return self;
 }
@@ -39,6 +38,7 @@
   [coder encodeObject:directions forKey:@"directions"];
   [coder encodeObject:preparationTime forKey:@"preparationTime"];
   [coder encodeObject:image forKey:@"image"];
+  [coder encodeObject:thumbnailImage forKey:@"thumbnailImage"];
 }
 
 @end

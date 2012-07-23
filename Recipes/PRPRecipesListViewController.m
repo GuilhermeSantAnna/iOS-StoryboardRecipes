@@ -73,8 +73,7 @@
 
 #pragma mark - Table view delegate messages
 
-- (void)tableView:(UITableView *)tableView
-accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
   UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
   [self performSegueWithIdentifier:@"editExistingRecipe"
                             sender:cell];
@@ -90,15 +89,14 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
     return [self.dataSource recipeCount];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView
-         cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   static NSString *CellIdentifier = @"Cell";
   
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-  cell.textLabel.text = [[self.dataSource recipeAtIndex:indexPath.row] title];
-  cell.imageView.image = [[self.dataSource recipeAtIndex:indexPath.row] image];
-  NSNumber *prepTime = [[self.dataSource recipeAtIndex:indexPath.row] preparationTime];
+  PRPRecipe *recipe = [self.dataSource recipeAtIndex:indexPath.row];
+  cell.textLabel.text = [recipe title];
+  cell.imageView.image = [recipe thumbnailImage];
+  NSNumber *prepTime = [recipe preparationTime];
   cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %@", prepTime, NSLocalizedString(@"minutes", nil)];
   return cell;
 }

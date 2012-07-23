@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.0" toolsVersion="1938" systemVersion="11C74" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="31">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11E53" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="31">
     <dependencies>
+        <deployment defaultVersion="1296" identifier="iOS"/>
         <development defaultVersion="4200" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="933"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1181"/>
     </dependencies>
     <scenes>
+        <!--Recipes List View Controller - Recipes-->
         <scene sceneID="5">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
@@ -69,6 +71,7 @@
             </objects>
             <point key="canvasLocation" x="286" y="-241"/>
         </scene>
+        <!--Recipe Editor View Controller - Edit Recipe-->
         <scene sceneID="2z3-Fv-YSk">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dbg-FB-Klt" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -77,12 +80,16 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="wood.png" id="PAg-7f-5TM">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" id="F6k-q2-aQ3">
                                 <rect key="frame" x="20" y="59" width="280" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <connections>
@@ -95,20 +102,21 @@
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="74W-iz-EYp" appends="YES" id="aMt-O0-tOl"/>
+                                    <outletCollection property="gestureRecognizers" destination="Omo-Tn-lda" appends="YES" id="zVh-ap-955"/>
                                 </connections>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Prep Time:" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="10" id="dbA-N4-kfv">
                                 <rect key="frame" x="20" y="147" width="74" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0" lineBreakMode="tailTruncation" minimumFontSize="10" id="VWd-fU-beA">
                                 <rect key="frame" x="109" y="147" width="42" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" minimumFontSize="17" id="zJV-3Y-0wc">
@@ -156,9 +164,15 @@
                         <segue destination="SZX-2N-ga7" kind="modal" identifier="choosePhoto" id="ugO-4w-jIk"/>
                     </connections>
                 </tapGestureRecognizer>
+                <rotationGestureRecognizer id="Omo-Tn-lda" userLabel="RecipeImage Rotation Gesture">
+                    <connections>
+                        <action selector="rotateRecipeImage:" destination="dwS-gH-e3r" id="Wtf-HJ-bK3"/>
+                    </connections>
+                </rotationGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1200" y="-847"/>
         </scene>
+        <!--Directions Editor View Controller - Directions-->
         <scene sceneID="2NT-uH-gFs">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ecK-jD-rsk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -189,6 +203,7 @@
             </objects>
             <point key="canvasLocation" x="1819" y="-847"/>
         </scene>
+        <!--Image Picker Controller-->
         <scene sceneID="Sq1-ii-zen">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vS8-Eg-bgw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -203,6 +218,7 @@
             </objects>
             <point key="canvasLocation" x="1819" y="-272"/>
         </scene>
+        <!--View Controller-->
         <scene sceneID="11">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="10" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -211,30 +227,38 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="wood.png" id="CPU-eA-KlJ">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" id="13">
                                 <rect key="frame" x="20" y="4" width="280" height="103"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="14">
+                            <imageView contentMode="scaleToFill" id="14">
                                 <rect key="frame" x="30" y="140" width="260" height="260"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="9zm-Mn-AGk" appends="YES" id="18K-Xv-rdy"/>
+                                </connections>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Prep Time:" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="10" id="FcA-FJ-cto">
                                 <rect key="frame" x="20" y="113" width="74" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0" lineBreakMode="tailTruncation" minimumFontSize="10" id="be3-H7-PkT">
                                 <rect key="frame" x="109" y="113" width="42" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -246,9 +270,15 @@
                         <outlet property="prepTime" destination="be3-H7-PkT" id="cfi-1e-4bw"/>
                     </connections>
                 </viewController>
+                <rotationGestureRecognizer id="9zm-Mn-AGk" userLabel="UIImageView Rotation Gesture">
+                    <connections>
+                        <action selector="rotateImageView:" destination="8" id="pBk-kb-Loo"/>
+                    </connections>
+                </rotationGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="767" y="-241"/>
         </scene>
+        <!--Navigation Controller-->
         <scene sceneID="34">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="33" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -266,6 +296,7 @@
             </objects>
             <point key="canvasLocation" x="-198" y="-241"/>
         </scene>
+        <!--Navigation Controller-->
         <scene sceneID="nEF-3R-fJc">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VZd-BZ-SFR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -287,6 +318,7 @@
     <resources>
         <image name="IMG_1948.jpg" width="280" height="280"/>
         <image name="TapToChoose.png" width="280" height="280"/>
+        <image name="wood.png" width="1280" height="1920"/>
     </resources>
     <classes>
         <class className="PRPDirectionsEditorViewController" superclassName="UIViewController">

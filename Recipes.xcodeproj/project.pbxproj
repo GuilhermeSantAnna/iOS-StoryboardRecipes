@@ -23,6 +23,8 @@
 		6EC6E6C813FB526A00DB4C3A /* PRPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC6E6C313FB526A00DB4C3A /* PRPViewController.m */; };
 		6EC6E6CB13FB528C00DB4C3A /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6EC6E6CA13FB528C00DB4C3A /* MainStoryboard.storyboard */; };
 		6EFF7F4C1403CCF20090D802 /* PRPDirectionsEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFF7F4B1403CCF20090D802 /* PRPDirectionsEditorViewController.m */; };
+		A7D492AA15B988E0001B46EE /* wood.png in Resources */ = {isa = PBXBuildFile; fileRef = A7D492A915B988E0001B46EE /* wood.png */; };
+		A7D492AD15B9A754001B46EE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7D492AC15B9A754001B46EE /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +57,8 @@
 		6EDD0D72143C87B7005ABC5C /* PRPDirectionsEditorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRPDirectionsEditorDelegate.h; sourceTree = "<group>"; };
 		6EFF7F4A1403CCF20090D802 /* PRPDirectionsEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRPDirectionsEditorViewController.h; sourceTree = "<group>"; };
 		6EFF7F4B1403CCF20090D802 /* PRPDirectionsEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRPDirectionsEditorViewController.m; sourceTree = "<group>"; };
+		A7D492A915B988E0001B46EE /* wood.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wood.png; sourceTree = "<group>"; };
+		A7D492AC15B9A754001B46EE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7D492AD15B9A754001B46EE /* QuartzCore.framework in Frameworks */,
 				6E06327E14714DC9008A3C15 /* CoreGraphics.framework in Frameworks */,
 				6EA3022114472C3800A47F7E /* MessageUI.framework in Frameworks */,
 				6EC6E69C13FB522C00DB4C3A /* UIKit.framework in Frameworks */,
@@ -92,6 +97,7 @@
 		6EC6E69A13FB522C00DB4C3A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A7D492AC15B9A754001B46EE /* QuartzCore.framework */,
 				6E06327D14714DC9008A3C15 /* CoreGraphics.framework */,
 				6EA3022014472C3800A47F7E /* MessageUI.framework */,
 				6EC6E69B13FB522C00DB4C3A /* UIKit.framework */,
@@ -105,6 +111,7 @@
 			children = (
 				6E726116142769A9009B7B86 /* TapToChoose.png */,
 				6EC6E6BA13FB526A00DB4C3A /* IMG_1948.jpg */,
+				A7D492A915B988E0001B46EE /* wood.png */,
 				6EC6E6BB13FB526A00DB4C3A /* PRPRecipe.h */,
 				6EC6E6BC13FB526A00DB4C3A /* PRPRecipe.m */,
 				6EC6E6BD13FB526A00DB4C3A /* PRPRecipesListDataSource.h */,
@@ -194,6 +201,7 @@
 				6EC6E6C413FB526A00DB4C3A /* IMG_1948.jpg in Resources */,
 				6EC6E6CB13FB528C00DB4C3A /* MainStoryboard.storyboard in Resources */,
 				6E726117142769A9009B7B86 /* TapToChoose.png in Resources */,
+				A7D492AA15B988E0001B46EE /* wood.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
