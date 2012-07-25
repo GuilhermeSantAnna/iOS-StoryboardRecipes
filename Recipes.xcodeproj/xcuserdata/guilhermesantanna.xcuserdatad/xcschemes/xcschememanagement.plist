@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>RecipeUnitTests.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>Recipes.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -13,6 +18,11 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>6EC6E69613FB522C00DB4C3A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A79E36EC15BD9EF000FAE3E0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
